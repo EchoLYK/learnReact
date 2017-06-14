@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      // this.props 表示那些一旦定义，就不再会改变的特性
+      // this.state 会随着用户互动而产生变化的特性
+
+      var Input = React.createClass({
+        getInitialState: function() {
+          return {value: 'hello!'};
+        },
+        handleChange: function (event) {
+          this.setState({value: event.target.value});
+        },
+        render: function(){
+          var value = this.state.value;
+          return (
+            <div>
+              <input type="text" value={value} onChange={this.handleChange}/>
+              <p>{value}</p>
+            </div>
+            
+          );
+        }
+      });
+
+      ReactDOM.render(
+        <Input />,
+        document.body
+      );
+    </script>
+  </body>
+</html>
+

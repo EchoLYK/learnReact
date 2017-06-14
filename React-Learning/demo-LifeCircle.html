@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      // this.props 表示那些一旦定义，就不再会改变的特性
+      // this.state 会随着用户互动而产生变化的特性
+
+      var LifeCircle = React.createClass({
+        getInitialState: function() {
+          return {
+            opacity: 1.0
+          };
+        },
+
+        componentDidMount: function (event) {
+          this.timer = setInterval(function () {
+            var opacity = this.state.opacity;
+            opacity -= 0.5;
+            if(opacity < 0.1){
+              opacity = 1.0;
+            }
+            this.setState({
+              opacity: opacity
+            });
+          }.bind(this),100);
+        },
+
+        render: function(){
+          return (
+            // 注意style的写法是{{}}，而不是""
+            <div style={{opacity: this.state.opacity}}>
+              Hello {this.props.name}
+            </div>
+          );
+        }
+      });
+
+      ReactDOM.render(
+        <LifeCircle name="world"/>,
+        document.body
+      );
+    </script>
+  </body>
+</html>
+

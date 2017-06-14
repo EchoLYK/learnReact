@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var MyTitle = React.createClass({
+        propTypes: {
+          // 通过PropTypes告诉React, title属性是必须的，且为字符串
+          title: React.PropTypes.string.isRequired,
+        },
+
+        // getDefaultProps方法可用来设置组件属性的默认值
+        getDefaultProps: function(){
+          return {
+            default : 'default props'
+          }
+        },
+
+        render: function(){
+          return <h1>{this.props.title} & {this.props.default}</h1>
+        }
+      });
+      
+      // 控制台会显示一行warning信息
+      var data = 123;
+
+      ReactDOM.render(
+        <MyTitle title={data}/>,
+        document.body
+      );
+    </script>
+  </body>
+</html>
+

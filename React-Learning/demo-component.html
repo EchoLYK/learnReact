@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+    <script type="text/babel">
+    	//<!-- 类名首字母必须大写 -->
+		var HelloMsg = React.createClass({
+		  //<!-- 所有组件类必须有自己的render方法，用于输出组件 -->
+		  // 组件是虚拟DOM; 
+		  // React具有DOM diff算法，所有DOM变动都先在虚拟DOM上发生，然后再将实际发生变动的部分反映在真实DOM上
+		  render: function(){
+		    //<!-- 组件类只能包含1个顶层标签 -->
+		    return <h1>Hello {this.props.name}
+		      <div>a div label in top label</div>
+			  <div>{this.props.className}</div>
+		    </h1>
+		  }
+		});
+
+		ReactDOM.render(
+		  //<!--class 属性需要写成 className ，for 属性需要写成 htmlFor-->
+		  <HelloMsg name="Echo" className="className"/>,
+		  document.getElementById('example')
+		);
+    </script>
+</body>
+</html>
